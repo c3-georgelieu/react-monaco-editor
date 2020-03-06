@@ -1,6 +1,7 @@
 import React from "react";
 import { render } from "react-dom";
 import MonacoEditor, { MonacoDiffEditor } from "react-monaco-editor";
+import * as ts from "typescript";
 
 class CodeEditor extends React.Component {
   constructor() {
@@ -13,12 +14,23 @@ class CodeEditor extends React.Component {
 
   onChange = newValue => {
     console.log("onChange", newValue); // eslint-disable-line no-console
+
+    // const sourceFile = ts.createSourceFile("fakeFile", "var a = 100;");
+    // console.log(sourceFile.fileName);
+
+    // if (window.ggg) {
+    //   console.log("Child Count is: " + window.ggg.getChildCount());
+    // }
   };
 
   editorDidMount = editor => {
     // eslint-disable-next-line no-console
     console.log("editorDidMount", editor, editor.getValue(), editor.getModel());
     this.editor = editor;
+
+    if (!window.ts) {
+      window.ts = ts;
+    }
   };
 
   changeEditorValue = () => {
@@ -48,6 +60,7 @@ class CodeEditor extends React.Component {
       cursorStyle: "line",
       automaticLayout: false
     };
+
     return (
       <div>
         <div>
