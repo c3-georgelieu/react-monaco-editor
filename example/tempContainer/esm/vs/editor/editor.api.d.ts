@@ -6575,6 +6575,8 @@ export namespace languages.typescript {
          * Note: monaco.languages.typescript namespace doesn't have exported member Program nor SourceFile. This may cause issues.
          */
         getSourceFile2(fileName: string): Promise<any>;
+
+        updateSourceFileText(fileName: string, newText: string, textChangeRange: any ): any;
     }
 
     export const typescriptVersion: string;
